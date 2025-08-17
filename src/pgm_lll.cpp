@@ -46,12 +46,10 @@ void PgmLLL::pgmLLL(const double delta)
                 Pmin = P;
             }
         }
-        std::cout << Pmin << std::endl;
 
         if (delta > Pmin)
         {
             this->deepInsertion(i, k);
-            //NTL::ComputeGS(this->basis, this->m_mu, this->m_B);
             this->updateGSODeepInsertion(i, k);
             k = i;
         }

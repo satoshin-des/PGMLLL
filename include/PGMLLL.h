@@ -30,16 +30,23 @@ public:
 
     /**
      * @brief open file to output
-     * 
+     *
      * @param file_name file name
      */
     void openFile(const char *file_name);
 
     /**
      * @brief close file
-     * 
+     *
      */
     void closeFile();
+
+    /**
+     * @brief compute RHF
+     *
+     * @return double RHF of basis
+     */
+    double rhf();
 
     /**
      * @brief compute log value of PGM
