@@ -10,14 +10,18 @@ def collect_rhf():
     x_axis = []
     lll_rhf = []
     pgm_rhf = []
-    bkz_rhf = []
+    bkz_5_rhf = []
+    bkz_10_rhf = []
+    bkz_15_rhf = []
     for dim in range(LOWER_DIM, UPPER_DIM, DIFF_DIM):
         print(dim)
         subprocess.call(["./../build/main_exec", str(dim)])
             
         lll_rhf.append(float(pd.read_csv("rhf.csv")['LLL'][0]))
         pgm_rhf.append(float(pd.read_csv("rhf.csv")['PGMLLL'][0]))
-        bkz_rhf.append(float(pd.read_csv("rhf.csv")['BKZ'][0]))
+        bkz_5_rhf.append(float(pd.read_csv("rhf.csv")['BKZ5'][0]))
+        bkz_10_rhf.append(float(pd.read_csv("rhf.csv")['BKZ10'][0]))
+        bkz_15_rhf.append(float(pd.read_csv("rhf.csv")['BKZ15'][0]))
         x_axis.append(dim)
     
     fig = plt.figure()
@@ -25,12 +29,14 @@ def collect_rhf():
     ax1.set_xlabel("dimension")
     ax1.set_ylabel("RHF")
     ax1.plot(x_axis, lll_rhf, marker = "", label="LLL")
-    ax1.plot(x_axis, bkz_rhf, marker = "", label="BKZ")
+    ax1.plot(x_axis, bkz_5_rhf, marker = "", label="BKZ-5")
+    ax1.plot(x_axis, bkz_10_rhf, marker = "", label="BKZ-10")
+    ax1.plot(x_axis, bkz_15_rhf, marker = "", label="BKZ-15")
     ax1.plot(x_axis, pgm_rhf, marker='', label="PGMLLL")
     
     plt.tick_params()
     plt.legend()
-    plt.savefig("RHF50-200.png")
+    plt.savefig("RHF40-150.png")
     plt.show()
 
 def plot_log_pgm(dim):
