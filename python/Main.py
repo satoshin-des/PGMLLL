@@ -56,5 +56,5 @@ def plot_log_pgm(dim):
     plt.show()
 
 if __name__ == '__main__':
-    collect_rhf()
-    #plot_log_pgm(int(input()))
+    #collect_rhf()
+    plot_log_pgm(int(input()))

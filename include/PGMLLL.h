@@ -19,6 +19,7 @@ private:
 public:
     long nrows;
     long ncols;
+    NTL::ZZ vol;
     NTL::mat_ZZ basis;
 
     /**

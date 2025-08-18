@@ -23,7 +23,8 @@ void PgmLLL::pgmLLL(const double delta)
 
     for (long k = 0, j, i, l; k < this->nrows;)
     {
-        //fprintf(this->m_file_to_output, "%lf\n", this->logPGM());
+        printf("k = %ld\n", k);
+        fprintf(this->m_file_to_output, "%lf\n", this->logPGM());
 
         for (j = k - 1; j > -1; --j)
         {
