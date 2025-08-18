@@ -72,6 +72,13 @@ public:
     void sizeReduce(const long i, const long j);
 
     /**
+     * @brief PotLLL-reduction
+     * 
+     * @param delta reduction parameter
+     */
+    void potLLL(const double delta);
+
+    /**
      * @brief PGMLLL-reduction
      *
      * @param delta reduction parameter

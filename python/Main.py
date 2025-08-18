@@ -4,11 +4,12 @@ import pandas as pd
 
 DIFF_DIM = 10
 LOWER_DIM = 40
-UPPER_DIM = 151
+UPPER_DIM = 101
 
 def collect_rhf():
     x_axis = []
     lll_rhf = []
+    pot_rhf = []
     pgm_rhf = []
     bkz_5_rhf = []
     bkz_10_rhf = []
@@ -18,6 +19,7 @@ def collect_rhf():
         subprocess.call(["./../build/main_exec", str(dim)])
             
         lll_rhf.append(float(pd.read_csv("rhf.csv")['LLL'][0]))
+        pot_rhf.append(float(pd.read_csv("rhf.csv")['PotLLL'][0]))
         pgm_rhf.append(float(pd.read_csv("rhf.csv")['PGMLLL'][0]))
         bkz_5_rhf.append(float(pd.read_csv("rhf.csv")['BKZ5'][0]))
         bkz_10_rhf.append(float(pd.read_csv("rhf.csv")['BKZ10'][0]))
@@ -31,7 +33,8 @@ def collect_rhf():
     ax1.plot(x_axis, lll_rhf, marker = "", label="LLL")
     ax1.plot(x_axis, bkz_5_rhf, marker = "", label="BKZ-5")
     ax1.plot(x_axis, bkz_10_rhf, marker = "", label="BKZ-10")
-    ax1.plot(x_axis, bkz_15_rhf, marker = "", label="BKZ-15")
+    # ax1.plot(x_axis, bkz_15_rhf, marker = "", label="BKZ-15")
+    ax1.plot(x_axis, pot_rhf, marker = "", label="PotLLL")
     ax1.plot(x_axis, pgm_rhf, marker='', label="PGMLLL")
     
     plt.tick_params()

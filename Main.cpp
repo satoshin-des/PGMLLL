@@ -6,12 +6,12 @@
 int main(int argc, char *argv[])
 {
     long dim = atol(argv[1]);
-    double lll_rhf, pgm_rhf, bkz_5_rhf, bkz_10_rhf, bkz_15_rhf;
+    double lll_rhf, pgm_rhf, pot_rhf, bkz_5_rhf, bkz_10_rhf, bkz_15_rhf;
     FILE *rhf = fopen("rhf.csv", "w");
 
-    PgmLLL L = svpChallenge(dim, 0);
+    PgmLLL L = svpChallenge(dim, 0), M = L;
 
-    fprintf(rhf, "LLL,PGMLLL,BKZ5,BKZ10,BKZ15\n");
+    fprintf(rhf, "LLL,PotLLL,PGMLLL,BKZ5,BKZ10,BKZ15\n");
 
     lll_rhf = L.rhf();
 
@@ -34,7 +34,10 @@ int main(int argc, char *argv[])
     NTL::BKZ_FP(L.basis, 0.99, 15);
     bkz_15_rhf = L.rhf();
 
-    fprintf(rhf, "%lf,%lf,%lf,%lf,%lf\n", lll_rhf, pgm_rhf, bkz_5_rhf, bkz_10_rhf, bkz_15_rhf);
+    M.potLLL(0.99);
+    pot_rhf = M.rhf();
+
+    fprintf(rhf, "%.20lf,%.20lf,%.20lf,%.20lf,%.20lf,%.20lf\n", lll_rhf, pot_rhf, pgm_rhf, bkz_5_rhf, bkz_10_rhf, bkz_15_rhf);
 
     fclose(rhf);
 

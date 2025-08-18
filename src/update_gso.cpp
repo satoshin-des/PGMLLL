@@ -1,6 +1,7 @@
 #include "PGMLLL.h"
 
 #include <NTL/mat_RR.h>
+#include <NTL/vec_RR.h>
 #include <NTL/RR.h>
 
 void PgmLLL::updateGSODeepInsertion(const long i, const long k)
@@ -34,13 +35,13 @@ void PgmLLL::updateGSODeepInsertion(const long i, const long k)
         }
     }
 
-    t = 1.0 / D[i];
+    t = 1 / D[i];
 
     for (l = this->nrows - 1; l > k; --l)
     {
         this->m_mu[l][i] = t * (S[l] + this->m_mu[l][i] * P[i]);
     }
-    for (l = k; l >= i + 2; --l)
+    for (l = k; l > i + 1; --l)
     {
         this->m_mu[l][i] = t * (S[l] + this->m_mu[l - 1][i] * P[i]);
     }
