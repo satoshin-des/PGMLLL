@@ -1,22 +1,25 @@
 #include "PGMLLL.h"
 
+#include <vector>
+#include <cmath>
+
 #include <NTL/RR.h>
 #include <NTL/mat_ZZ.h>
 #include <NTL/LLL.h>
 
 void PgmLLL::potLLL(const double delta)
 {
-    NTL::RR sum;
-    NTL::RR P, Pmin;
+    FLOAT sum;
+    FLOAT P, Pmin;
 
-    NTL::ComputeGS(this->basis, this->m_mu, this->m_B);
+    this->gramSchmidt();
 
     for (long k = 0, j, i, l; k < this->nrows;)
     {
         for (j = k - 1; j > -1; --j)
         {
             this->sizeReduce(k, j);
-        }
+        } 
 
         P = Pmin = 1;
         i = 0;
@@ -38,8 +41,8 @@ void PgmLLL::potLLL(const double delta)
         if (delta > Pmin)
         {
             this->deepInsertion(i, k);
-            NTL::ComputeGS(this->basis, this->m_mu, this->m_B);
-            // this->updateGSODeepInsertion(i, k);
+            // NTL::ComputeGS(this->basis, this->m_mu, this->m_B);
+            this->updateGSODeepInsertion(i, k);
             k = i;
         }
         else

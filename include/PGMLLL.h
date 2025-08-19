@@ -3,15 +3,18 @@
 
 #include <iostream>
 #include <cmath>
+#include <vector>
 
 #include <NTL/mat_ZZ.h>
 #include <NTL/mat_RR.h>
 
+typedef long double FLOAT;
+
 class PgmLLL
 {
 private:
-    NTL::mat_RR m_mu;
-    NTL::vec_RR m_B;
+    std::vector<std::vector<FLOAT>> m_mu;
+    std::vector<FLOAT> m_B;
     FILE *m_file_to_output;
 
     void updateGSODeepInsertion(const long i, const long k);
@@ -45,16 +48,16 @@ public:
     /**
      * @brief compute RHF
      *
-     * @return double RHF of basis
+     * @return FLOAT RHF of basis
      */
-    double rhf();
+    FLOAT rhf();
 
     /**
      * @brief compute log value of PGM
      *
-     * @return NTL::RR log value of PGM
+     * @return FLOAT value of PGM
      */
-    double logPGM();
+    FLOAT logPGM();
 
     /**
      * @brief deep-insertion(i, k)
@@ -63,6 +66,12 @@ public:
      * @param k index
      */
     void deepInsertion(const long i, const long k);
+
+    /**
+     * @brief 
+     * 
+     */
+    void gramSchmidt();
 
     /**
      * @brief Paratil size-reduction

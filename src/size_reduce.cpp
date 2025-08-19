@@ -6,10 +6,10 @@
 
 void PgmLLL::sizeReduce(const long i, const long j)
 {
-    if (NTL::abs(this->m_mu[i][j]) > 0.5)
+    if ((this->m_mu[i][j] > 0.5) || (this->m_mu[i][j] < -0.5))
     {
-        const NTL::RR q = NTL::round(this->m_mu[i][j]);
-        this->basis[i] -= NTL::to_ZZ(q) * this->basis[j];
+        const FLOAT q = std::roundl(this->m_mu[i][j]);
+        this->basis[i] -= NTL::to_ZZ(static_cast<double>(q)) * this->basis[j];
         for (long l = 0; l <= j; ++l)
         {
             this->m_mu[i][l] -= q * this->m_mu[j][l];

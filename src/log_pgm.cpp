@@ -1,10 +1,10 @@
 #include "PGMLLL.h"
 
-#include <NTL/RR.h>
+#include <cmath>
 
-double PgmLLL::logPGM()
+FLOAT PgmLLL::logPGM()
 {
-    NTL::RR gm, p;
+    FLOAT gm, p;
 
     p = 0;
     for (long k = 0, i; k < this->nrows; ++k)
@@ -12,10 +12,10 @@ double PgmLLL::logPGM()
         gm = 0;
         for (i = 0; i <= k; ++i)
         {
-            gm += NTL::log(this->m_B[i]);
+            gm += std::log(this->m_B[i]);
         }
-        p += NTL::log(gm) / (k + 1);
+        p += std::log(gm) / (k + 1);
     }
 
-    return NTL::to_double(p);
+    return p;
 }

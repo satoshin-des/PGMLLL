@@ -1,5 +1,8 @@
 #include "PGMLLL.h"
 
+#include <vector>
+#include <cmath>
+
 #include <NTL/mat_RR.h>
 #include <NTL/vec_RR.h>
 #include <NTL/RR.h>
@@ -7,11 +10,8 @@
 void PgmLLL::updateGSODeepInsertion(const long i, const long k)
 {
     long j, l;
-    NTL::RR t, eps;
-    NTL::vec_RR P, D, S;
-    P.SetLength(this->nrows);
-    D.SetLength(this->nrows);
-    S.SetLength(this->nrows);
+    FLOAT t, eps;
+    std::vector<FLOAT> P(this->nrows), D(this->nrows), S(this->nrows);
 
     P[k] = D[k] = this->m_B[k];
     for (j = k - 1; j >= i; --j)

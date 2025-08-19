@@ -1,5 +1,8 @@
 #include "PGMLLL.h"
 
+#include <vector>
+#include <cmath>
+
 #include <NTL/mat_RR.h>
 #include <NTL/mat_ZZ.h>
 #include <NTL/RR.h>
@@ -9,22 +12,26 @@ PgmLLL::PgmLLL(const long n)
     : nrows(n),
       ncols(n)
 {
-    this->m_mu.SetDims(n, n);
-    this->m_B.SetLength(n);
+    this->m_mu.resize(n);
+    this->m_B.resize(n);
+    for(long i = 0; i < n; ++i)
+    {
+        this->m_mu[i].resize(n);
+    }
     this->basis.SetDims(n, n);
 }
 
 void PgmLLL::pgmLLL(const double delta)
 {
-    NTL::RR sum;
-    NTL::RR P, Pmin;
+    FLOAT sum;
+    FLOAT P, Pmin;
 
-    NTL::ComputeGS(this->basis, this->m_mu, this->m_B);
+    this->gramSchmidt();
 
     for (long k = 0, j, i, l; k < this->nrows;)
     {
-        printf("k = %ld\n", k);
-        fprintf(this->m_file_to_output, "%lf\n", this->logPGM());
+        // printf("k = %ld\n", k);
+        fprintf(this->m_file_to_output, "%lf\n", static_cast<double>(this->logPGM()));
 
         for (j = k - 1; j > -1; --j)
         {
@@ -40,7 +47,7 @@ void PgmLLL::pgmLLL(const double delta)
             {
                 sum += this->m_mu[k][l] * this->m_mu[k][l] * this->m_B[l];
             }
-            P *= NTL::pow(sum / this->m_B[j], NTL::to_RR(1.0 / (j + 1)));
+            P *= std::pow(sum / this->m_B[j], 1.0 / (j + 1));
             if (P < Pmin)
             {
                 i = j;
@@ -51,8 +58,8 @@ void PgmLLL::pgmLLL(const double delta)
         if (std::pow(delta, 1.0 / (i + 1)) > Pmin)
         {
             this->deepInsertion(i, k);
-            NTL::ComputeGS(this->basis, this->m_mu, this->m_B);
-            // this->updateGSODeepInsertion(i, k);
+            // NTL::ComputeGS(this->basis, this->m_mu, this->m_B);
+            this->updateGSODeepInsertion(i, k);
             k = i;
         }
         else
