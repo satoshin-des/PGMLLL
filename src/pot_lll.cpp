@@ -3,9 +3,7 @@
 #include <vector>
 #include <cmath>
 
-#include <NTL/RR.h>
 #include <NTL/mat_ZZ.h>
-#include <NTL/LLL.h>
 
 void PgmLLL::potLLL(const double delta)
 {

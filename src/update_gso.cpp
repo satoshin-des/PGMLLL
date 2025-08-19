@@ -3,10 +3,6 @@
 #include <vector>
 #include <cmath>
 
-#include <NTL/mat_RR.h>
-#include <NTL/vec_RR.h>
-#include <NTL/RR.h>
-
 void PgmLLL::updateGSODeepInsertion(const long i, const long k)
 {
     long j, l;

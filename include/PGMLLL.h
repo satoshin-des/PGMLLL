@@ -6,7 +6,6 @@
 #include <vector>
 
 #include <NTL/mat_ZZ.h>
-#include <NTL/mat_RR.h>
 
 typedef long double FLOAT;
 
@@ -68,7 +67,7 @@ public:
     void deepInsertion(const long i, const long k);
 
     /**
-     * @brief 
+     * @brief Gram-Schmidt orthogonalization
      * 
      */
     void gramSchmidt();

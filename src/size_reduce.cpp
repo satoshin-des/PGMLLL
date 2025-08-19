@@ -1,6 +1,5 @@
 #include "PGMLLL.h"
 
-#include <NTL/mat_RR.h>
 #include <NTL/mat_ZZ.h>
 #include <NTL/RR.h>
 
