@@ -4,7 +4,7 @@ import pandas as pd
 
 DIFF_DIM = 10
 LOWER_DIM = 40
-UPPER_DIM = 151
+UPPER_DIM = 201
 
 def collect_rhf():
     x_axis = []
