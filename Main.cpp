@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     NTL::BKZ_FP(L.basis, 0.99, 15);
     bkz_15_rhf = L.rhf();
 
-    //M.potLLL(0.99);
+    M.potLLL(0.99);
     pot_rhf = M.rhf();
 
     fprintf(rhf, "%.20lf,%.20lf,%.20lf,%.20lf,%.20lf,%.20lf\n", lll_rhf, pot_rhf, pgm_rhf, bkz_5_rhf, bkz_10_rhf, bkz_15_rhf);
