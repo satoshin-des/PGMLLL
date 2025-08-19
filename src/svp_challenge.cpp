@@ -648,6 +648,6 @@ PgmLLL svpChallenge(const long dim, const long seed)
                 lattice.basis[i][j] = svp_190_9[i][j];
 
     lattice.vol = NTL::abs(NTL::determinant(lattice.basis));
-
+    
     return lattice;
 }

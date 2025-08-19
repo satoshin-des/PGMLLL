@@ -47,9 +47,9 @@ public:
     /**
      * @brief compute RHF
      *
-     * @return FLOAT RHF of basis
+     * @return double RHF of basis
      */
-    FLOAT rhf();
+    double rhf();
 
     /**
      * @brief compute log value of PGM

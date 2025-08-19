@@ -1,12 +1,10 @@
 #include "PGMLLL.h"
 
-#include <cmath>
-
 #include <NTL/RR.h>
 #include <NTL/mat_ZZ.h>
 
-FLOAT PgmLLL::rhf()
+double PgmLLL::rhf()
 {
-    const FLOAT hf = std::sqrt(NTL::to_double(this->basis[0] * this->basis[0])) / std::pow(NTL::to_double(this->vol), 1.0 / this->nrows);
-    return std::pow(hf, 1.0 / this->nrows);
+    const NTL::RR hf = NTL::sqrt(NTL::to_RR(this->basis[0] * this->basis[0])) / NTL::pow(NTL::to_RR(this->vol), NTL::to_RR(1.0 / this->nrows));
+    return NTL::to_double(NTL::pow(hf, NTL::to_RR(1.0 / this->nrows)));
 }

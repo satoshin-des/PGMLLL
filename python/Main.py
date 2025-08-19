@@ -4,7 +4,7 @@ import pandas as pd
 
 DIFF_DIM = 10
 LOWER_DIM = 40
-UPPER_DIM = 101
+UPPER_DIM = 151
 
 def collect_rhf():
     x_axis = []
@@ -31,9 +31,9 @@ def collect_rhf():
     ax1.set_xlabel("dimension")
     ax1.set_ylabel("RHF")
     ax1.plot(x_axis, lll_rhf, marker = "", label="LLL")
-    ax1.plot(x_axis, bkz_5_rhf, marker = "", label="BKZ-5")
+    # ax1.plot(x_axis, bkz_5_rhf, marker = "", label="BKZ-5")
     ax1.plot(x_axis, bkz_10_rhf, marker = "", label="BKZ-10")
-    # ax1.plot(x_axis, bkz_15_rhf, marker = "", label="BKZ-15")
+    ax1.plot(x_axis, bkz_15_rhf, marker = "", label="BKZ-15")
     ax1.plot(x_axis, pot_rhf, marker = "", label="PotLLL")
     ax1.plot(x_axis, pgm_rhf, marker='', label="PGMLLL")
     
@@ -56,5 +56,5 @@ def plot_log_pgm(dim):
     plt.show()
 
 if __name__ == '__main__':
-    #collect_rhf()
-    plot_log_pgm(int(input()))
+    collect_rhf()
+    # plot_log_pgm(int(input()))

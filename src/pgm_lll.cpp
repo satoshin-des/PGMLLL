@@ -28,7 +28,7 @@ void PgmLLL::pgmLLL(const double delta)
 
     for (long k = 0, j, i, l; k < this->nrows;)
     {
-        fprintf(this->m_file_to_output, "%lf\n", static_cast<double>(this->logPGM()));
+        // fprintf(this->m_file_to_output, "%lf\n", static_cast<double>(this->logPGM()));
 
         for (j = k - 1; j > -1; --j)
         {
